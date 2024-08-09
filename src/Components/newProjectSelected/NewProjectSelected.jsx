@@ -1,6 +1,8 @@
+
 import noteImage from "../../assets/0e3321d22cae3e73c9546b1aca65aca1.png";
 import PropTypes from "prop-types";
 function NewProjectSelected({ onStartAddProject }) {
+ 
   return (
     <div
       style={{
