@@ -1,7 +1,7 @@
 import './App.css'
 import { useState } from "react";
 import ProjectSideBar from "./Components/ProjectSideBar/ProjectSideBar.jsx";
-import NewProjectSelected from "./Components/newProjectSelected/NewProjectSelected.jsx";
+import NewProjectSelected from "./Components/noProjectSelected/NewProjectSelected.jsx";
 import NewProject from "./Components/NewProject/newProject.jsx";
 import SelectedProject from "./Components/SelectedProject/SelectedProject.jsx";
 
