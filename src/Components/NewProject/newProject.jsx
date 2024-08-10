@@ -2,6 +2,7 @@
   import { useRef } from "react";
   import InputBar from "./inputBar";
   import Modal from "./Modal";
+  import styles from './NewProject.module.css'
   function NewProject({ onAdd,onCancel }) {
     const modal = useRef();
     const titleRef = useRef();
@@ -36,13 +37,13 @@
           <p>Opps...... looks like you forgot to enter a value.</p>
           <p>make sure to provide a valid value for a every input field</p>
         </Modal>
-        <div>
-          <menu>
+        <div className={styles.main}>
+          <menu className={styles.menu}>
             <li>
-              <button onClick={onCancel}>Cancel</button>
+              <button onClick={onCancel} className={styles.button}>Cancel</button>
             </li>
             <li>
-              <button onClick={handleSaveProject}>Save</button>
+              <button onClick={handleSaveProject} className={styles.save}>Save</button>
             </li>
           </menu>
           <InputBar type="text" label="Title" ref={titleRef}/>

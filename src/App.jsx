@@ -1,3 +1,4 @@
+import './App.css'
 import { useState } from "react";
 import ProjectSideBar from "./Components/ProjectSideBar/ProjectSideBar.jsx";
 import NewProjectSelected from "./Components/newProjectSelected/NewProjectSelected.jsx";
@@ -109,7 +110,7 @@ function App() {
   }
 
   return (
-    <main style={{ display: "flex" }}>
+    <main>
       <ProjectSideBar
         onStartAddProject={handleStartAddProject}
         onSelectProject={handleSelectProject}

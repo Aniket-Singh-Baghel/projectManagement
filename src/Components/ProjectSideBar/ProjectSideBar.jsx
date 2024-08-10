@@ -1,16 +1,16 @@
 import PropTypes from "prop-types";
-
+import Styles from './ProjectSideBar.module.css'
 function ProjectSideBar({ onStartAddProject, projects,onSelectProject }) {
   return (
     <aside>
-      <h2 className="text-4xl font-bold text-blue-500">Your Projects</h2>
+      <h2 className={Styles.subject}>Your Projects</h2>
       <div>
-        <button onClick={onStartAddProject}>+ Add Project</button>
+        <button className={Styles.addProjectButton} onClick={onStartAddProject}>+ Add Project</button>
       </div>
-      <ul>
+      <ul className={Styles.listWrapper}>
         {projects.map((project,index) => (
-          <li key={index}>
-            <button onClick={()=>onSelectProject(project.id)}>{project.title}</button>
+          <li key={index} className={Styles.listItem}>
+            <button className={Styles.projectTitle} onClick={()=>onSelectProject(project.id)}>{project.title}</button>
           </li>
         ))}
       </ul>
