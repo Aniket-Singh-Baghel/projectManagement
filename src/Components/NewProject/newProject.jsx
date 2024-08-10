@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useRef } from "react";
 import InputBar from "./inputBar";
 import Modal from "./Modal";
-function NewProject({ onAdd }) {
+function NewProject({ onAdd,onCancel }) {
   const modal = useRef();
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -39,13 +39,13 @@ function NewProject({ onAdd }) {
       <div>
         <menu>
           <li>
-            <button>Cancel</button>
+            <button onClick={onCancel}>Cancel</button>
           </li>
           <li>
             <button onClick={handleSaveProject}>Save</button>
           </li>
         </menu>
-        <InputBar type="text" label="Title" ref={titleRef} />
+        <InputBar type="text" label="Title" ref={titleRef}/>
         <InputBar label="Description" ref={descriptionRef} textarea />
         <InputBar type="date" label="Due Date" ref={dueDateRef} />
       </div>
@@ -55,6 +55,7 @@ function NewProject({ onAdd }) {
 
 NewProject.propTypes = {
   onAdd: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default NewProject;
