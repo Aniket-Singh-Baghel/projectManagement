@@ -1,3 +1,4 @@
+import styles from './SelectedProject.module.css'
 import PropType from 'prop-types'
 import Tasks from './Tasks'
 function SelectedProject({project,onDeleteProject,tasks,onAddTask,onDeleteTask}) {
@@ -7,15 +8,16 @@ function SelectedProject({project,onDeleteProject,tasks,onAddTask,onDeleteTask})
     day:'numeric'
    })
   return (
-    <div>
+    <div className={styles.main}>
         <header>
-            <div>
+            <div className={styles.title}>
                 <h1>{project.title}</h1>
                 <button onClick={onDeleteProject}>Delete</button>
             </div>
-            <p>{formattedDate}</p>
-            <p>{project.description}</p>
+            <p className={styles.date}>{formattedDate}</p>
+            <p className={styles.desc}>{project.description}</p>
         </header>
+        <div className={styles.line}></div>
         <Tasks onAdd={onAddTask} tasks={tasks} onDelete={onDeleteTask}/>
     </div>
   )
