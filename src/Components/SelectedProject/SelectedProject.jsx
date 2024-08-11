@@ -15,6 +15,7 @@ function SelectedProject({project,onDeleteProject,tasks,onAddTask,onDeleteTask})
                 <button onClick={onDeleteProject}>Delete</button>
             </div>
             <p className={styles.date}>{formattedDate}</p>
+            <div className={styles.dateBorder}></div>
             <p className={styles.desc}>{project.description}</p>
         </header>
         <div className={styles.line}></div>

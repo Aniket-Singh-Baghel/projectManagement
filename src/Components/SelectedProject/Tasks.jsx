@@ -6,7 +6,7 @@ function Tasks({ onAdd, tasks, onDelete }) {
     <section className={styles.section}>
       <h2>Tasks</h2>
       <NewTask onAddTask={onAdd} />
-      {tasks.length === 0 && <p className={styles.emptyTask}>This Project has does not any tasks yet.</p>}
+      {tasks.length === 0 && <p className={styles.emptyTask}>This project does not have any tasks yet.</p>}
       {tasks.length>0 && <ul className={styles.listContainer}>
         {tasks.map((task) => (
           <li key={task.id}>
