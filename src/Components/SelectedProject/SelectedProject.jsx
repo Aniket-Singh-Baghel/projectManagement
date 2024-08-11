@@ -1,7 +1,7 @@
 import styles from './SelectedProject.module.css'
 import PropType from 'prop-types'
 import Tasks from './Tasks'
-function SelectedProject({project,onDeleteProject,tasks,onAddTask,onDeleteTask}) {
+function SelectedProject({project,onDeleteProject,onAddTask,onDeleteTask}) {
    const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US',{
     year:'numeric',
     month:'short',
@@ -19,7 +19,7 @@ function SelectedProject({project,onDeleteProject,tasks,onAddTask,onDeleteTask})
             <p className={styles.desc}>{project.description}</p>
         </header>
         <div className={styles.line}></div>
-        <Tasks onAdd={onAddTask} tasks={tasks} onDelete={onDeleteTask}/>
+        <Tasks onAdd={onAddTask} tasks={project.tasks} onDelete={onDeleteTask} project={project}/>
     </div>
   )
 }
@@ -33,3 +33,5 @@ SelectedProject.propTypes={
 }
 
 export default SelectedProject
+
+

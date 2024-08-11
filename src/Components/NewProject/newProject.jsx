@@ -32,7 +32,7 @@
 
     return (
       <>
-        <Modal ref={modal} buttonCaption="Close">
+        <Modal ref={modal} buttonCaption="Okay">
           <h2>Invalid Input</h2>
           <p>Opps...... looks like you forgot to enter a value.</p>
           <p>make sure to provide a valid value for a every input field</p>
@@ -40,7 +40,7 @@
         <div className={styles.main}>
           <menu className={styles.menu}>
             <li>
-              <button onClick={onCancel} className={styles.button}>Cancel</button>
+              <button onClick={onCancel} className={styles.cancel}>Cancel</button>
             </li>
             <li>
               <button onClick={handleSaveProject} className={styles.save}>Save</button>
@@ -60,3 +60,6 @@
   };
 
   export default NewProject;
+
+
+  

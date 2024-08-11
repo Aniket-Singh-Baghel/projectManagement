@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import { useState } from "react";
 import ProjectSideBar from "./Components/ProjectSideBar/ProjectSideBar.jsx";
 import NewProjectSelected from "./Components/noProjectSelected/NewProjectSelected.jsx";
@@ -9,7 +9,6 @@ function App() {
   const [projectState, setProjectState] = useState({
     projectStateId: undefined,
     projects: [],
-    tasks: [],
   });
 
   function handleSelectProject(id) {
@@ -20,6 +19,30 @@ function App() {
       };
     });
     console.log(projectState);
+  }
+
+  function handleStartAddProject() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        projectStateId: null,
+      };
+    });
+  }
+
+  function handleAddProject(projectData) {
+    setProjectState((prevState) => {
+      const newProject = {
+        ...projectData,
+        id: Math.random(),
+        tasks: [],
+      };
+      return {
+        ...prevState,
+        projectStateId: undefined,
+        projects: [...prevState.projects, newProject],
+      };
+    });
   }
 
   function handleDeleteProject() {
@@ -34,55 +57,6 @@ function App() {
     });
   }
 
-  function handleStartAddProject() {
-    setProjectState((prevState) => {
-      return {
-        ...prevState,
-        projectStateId: null,
-      };
-    });
-  }
-
-  function handleAddTask(tasksData) {
-    setProjectState((prevState) => {
-      const newtask = {
-        ...tasksData,
-        taskData: tasksData,
-        projectId:prevState.projectStateId, 
-        id: Math.random(),
-      };
-      return {
-        ...prevState,
-        tasks: [...prevState.tasks, newtask],
-      };
-    });
-  }
-
-  function handleDeleteTask(id) {
-    setProjectState((prevState) => {
-      return {
-        ...prevState,
-        tasks: prevState.tasks.filter(
-          (task) => task.id !== id
-        ),
-      };
-    });
-  }
-
-  function handleAddProject(projectData) {
-    setProjectState((prevState) => {
-      const newProject = {
-        ...projectData,
-        id: Math.random(),
-      };
-      return {
-        ...prevState,
-        projectStateId: undefined,
-        projects: [...prevState.projects, newProject],
-      };
-    });
-  }
-
   function handleCancelAddProject() {
     setProjectState((prevState) => {
       return {
@@ -92,6 +66,45 @@ function App() {
     });
   }
 
+
+  function handleAddTask(taskData) {
+    setProjectState((prevState) => {
+      const updatedProjects = prevState.projects.map((project) => {
+        if (project.id === prevState.projectStateId) {
+          return {
+            ...project,
+            tasks: [...project.tasks, { id: Math.random(), taskData }],
+          };
+        }
+        return project;
+      });
+
+      return {
+        ...prevState, 
+        projects: updatedProjects,
+      };
+    });
+  }
+
+  function handleDeleteTask(taskId) {
+    setProjectState((prevState) => {
+      const updatedProjects = prevState.projects.map((project) => {
+        if (project.id === prevState.projectStateId) {
+          return {
+            ...project,
+            tasks: project.tasks.filter((task) => task.id !== taskId),
+          };
+        }
+        return project;
+      });
+  
+      return {
+        ...prevState,
+        projects: updatedProjects,
+      };
+    });
+  }
+  
   console.log(projectState);
 
   const selectedProject = projectState.projects.find(
@@ -99,7 +112,13 @@ function App() {
   );
 
   let content = (
-    <SelectedProject project={selectedProject} onDeleteProject={handleDeleteProject} tasks={projectState.tasks} onAddTask={handleAddTask} onDeleteTask={handleDeleteTask}/>
+    <SelectedProject
+      project={selectedProject}
+      onDeleteProject={handleDeleteProject}
+      tasks={projectState.tasks}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+    />
   );
   if (projectState.projectStateId === null) {
     content = (
@@ -115,6 +134,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         onSelectProject={handleSelectProject}
         projects={projectState.projects}
+        projectStateId={projectState.projectStateId}
       />
       {content}
     </main>

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styles from './NewProject.module.css'
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import { createPortal } from "react-dom";
 
@@ -9,10 +10,11 @@ const Modal = forwardRef(function Modal({ children, buttonCaption }, ref) {
       open() {
         dialog.current.showModal();
       },
+      
     };
   });
   return createPortal(
-    <dialog ref={dialog}>
+    <dialog className={styles.modal} ref={dialog}>
       {children}
       <form method="dialog">
         <button>{buttonCaption}</button>
@@ -28,3 +30,5 @@ Modal.propTypes = {
 };
 
 export default Modal;
+
+

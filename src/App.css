@@ -18,3 +18,4 @@ body::-webkit-scrollbar {
   width: 0;  /* Removes the scrollbar width */
   background: transparent;  /* Makes the scrollbar track transparent */
 }
+
